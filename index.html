@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Sign-In Demo</title>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+</head>
+<body>
+  <h1>Google Sign-In Demo</h1>
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+  <h2>User Information</h2>
+  <p id="user-name"></p>
+  <p id="user-email"></p>
+  <img id="user-image" src="" alt="User Image">
+
+  <script>
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      console.log('ID: ' + profile.getId());
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail());
+
+      document.getElementById('user-name').textContent = profile.getName();
+      document.getElementById('user-email').textContent = profile.getEmail();
+      document.getElementById('user-image').src = profile.getImageUrl();
+    }
+  </script>
+</body>
+</html>
