@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Google Sign-In Demo</title>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capture Query Parameters</title>
+    <script>
+        // Function to get query parameters from URL
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            const state = params.get('state');
+            const code = params.get('code');
+            const scope = params.get('scope');
+            
+            // Log the values to the console
+            console.log('State:', state);
+            console.log('Code:', code);
+            console.log('Scope:', scope);
+
+            // Display the values on the webpage
+            document.getElementById('state').textContent = state;
+            document.getElementById('code').textContent = code;
+            document.getElementById('scope').textContent = scope;
+        }
+
+        // Call the function on page load
+        window.onload = getQueryParams;
+    </script>
 </head>
 <body>
-  <h1>Google Sign-In Demo</h1>
-  <div class="g-signin2" data-onsuccess="onSignIn"></div>
-
-  <h2>User Information</h2>
-  <p id="user-name"></p>
-  <p id="user-email"></p>
-  <img id="user-image" src="" alt="User Image">
-
-  <p><a href="https://whatsauth.my.id/privacy-policy.html">Privacy Policy</a> | <a href="https://whatsauth.my.id/terms-of-service.html">Terms of Service</a></p>
-
-  <script>
-    function onSignIn(googleUser) {
-      var profile = googleUser.getBasicProfile();
-      console.log('ID: ' + profile.getId());
-      console.log('Name: ' + profile.getName());
-      console.log('Image URL: ' + profile.getImageUrl());
-      console.log('Email: ' + profile.getEmail());
-
-      document.getElementById('user-name').textContent = profile.getName();
-      document.getElementById('user-email').textContent = profile.getEmail();
-      document.getElementById('user-image').src = profile.getImageUrl();
-    }
-  </script>
+    <h1>Query Parameters</h1>
+    <p><strong>State:</strong> <span id="state"></span></p>
+    <p><strong>Code:</strong> <span id="code"></span></p>
+    <p><strong>Scope:</strong> <span id="scope"></span></p>
 </body>
 </html>
