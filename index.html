@@ -23,6 +23,17 @@
             document.getElementById('scope').textContent = scope;
         }
 
+        // Function to copy the code to clipboard
+        function copyCode() {
+            const codeElement = document.getElementById('code');
+            const code = codeElement.textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Code copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
         // Call the function on page load
         window.onload = getQueryParams;
     </script>
@@ -30,7 +41,7 @@
 <body>
     <h1>Query Parameters</h1>
     <p><strong>State:</strong> <span id="state"></span></p>
-    <p><strong>Code:</strong> <span id="code"></span></p>
+    <p><strong>Code:</strong> <span id="code"></span> <button onclick="copyCode()">Copy Code</button></p>
     <p><strong>Scope:</strong> <span id="scope"></span></p>
 </body>
 </html>
